@@ -50,6 +50,10 @@ var styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "500"
   },
+  statusbar: {
+    backgroundColor: '#fff',
+    height: 22,
+  },
   center: {
     textAlign: 'center',
   },
@@ -66,14 +70,11 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
-  backgroundImage: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 10,
-    paddingBottom: 15,
-    paddingLeft: 10,
-    paddingRight: 10
-  }
+  notificationText: {
+    textAlign: 'center',
+    color: '#000',
+    fontSize: 25,
+  },
 })
 
 module.exports = styles
