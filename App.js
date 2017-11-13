@@ -11,7 +11,7 @@ import {
   Button,
   Linking
 } from 'react-native';
-
+import { MKColor, MKButton } from 'react-native-material-kit'
 import MapView from 'react-native-maps'
 import DeepLinking from 'react-native-deep-linking';
 import ActionButton from './components/ActionButton';
