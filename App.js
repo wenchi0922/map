@@ -11,44 +11,24 @@ import {
   Button,
   Linking
 } from 'react-native';
-import { MKColor, MKButton } from 'react-native-material-kit'
 import MapView from 'react-native-maps'
-import DeepLinking from 'react-native-deep-linking';
+import DeepLinking from 'react-native-deep-linking';
 import ActionButton from './components/ActionButton';
-import Geofence from 'react-native-expo-geofence';
-import { Constants, Permissions, Notifications } from 'expo';
-
 const morialtaCoor = require( './routes/route1.js');
 const loftyCoor = require( './routes/route2.js');
 const mylorCoor = require( './routes/route3.js');
 const notonCoor = require( './routes/route4.js');
 const styles = require('./styles.js');
 
-const triggerPoint1 = require( './triggerPoints/triggerPoint1.js');
 
-
-class morialtaRouteScreen extends Component {
-
-  currentPoint = { latitude : -34.89680   , longitude : 138.69200  };
-
-  getByProximity() {
-        var pos = this.currentPoint;
-        var result = Geofence.filterByProximity(triggerPoint1.Points[0], pos, this.state.distance/1000);
-        return result; // returns points that are in the fence
-  }
-
-  getDistance() {
-        var pos = this.currentPoint;
-        var distance = Geofence.distanceInKM(triggerPoint1.Points[0], pos);
-        return distance;  // in km
-  }
-
+ class morialtaRouteScreen extends Component {
   static navigationOptions = {
-    title: 'MorialtaRoute',
+    title: 'morialtaRoute',
   };
 
   constructor(props) {
     super(props);
+
     this.state = {
       region: {
         latitude: -34.928534,
@@ -64,9 +44,9 @@ class morialtaRouteScreen extends Component {
         title:'you are here',
         description:'you are here',
       }],
-      distance: 200,  //Siyu: 200 meters
-    }
+
   }
+}
   /**
    * Ref: https://facebook.github.io/react-native/docs/geolocation.html
    */
@@ -120,46 +100,34 @@ class morialtaRouteScreen extends Component {
     return (
       <View style={styles.container}>
         <ActionButton title="Find me!" onPress={() => this.getAndUpdateLocation()} />
-        {this.getByProximity() ?
-          <Text style={styles.notificationText}> You are in Fence 1! </Text> :
-          <Text style={styles.notificationText}> You are not in Fence 1! </Text>
-        }
-        <Text style={styles.notificationText}> You are {this.getDistance()} km away from the center of Fence 1.</Text>
         <MapView
           style={styles.map}
           region={this.state.region}
           onRegionChange={(region) => this.onRegionChange(region)}
-        >
-        {this.state.markers.map(marker => (
-          <MapView.Marker
-          coordinate={marker.latlng}
-          title={marker.title}
-          description={marker.description}
+          >
+         {this.state.markers.map(marker => (
+         <MapView.Marker
+         coordinate={marker.latlng}
+         title={marker.title}
+         description={marker.description}
+    />
+  ))}
+  {morialtaCoor.coor.polylines.map(polyline => (
+        <MapView.Polyline
+          key={polyline.id}
+          coordinates={polyline.coordinates}
+          strokeColor="blue"
+          fillColor="red"
+          strokeWidth={2}
           />
-        ))}
-        {morialtaCoor.coor.polylines.map(polyline => (
-          <MapView.Polyline
-            key={polyline.id}
-            coordinates={polyline.coordinates}
-            strokeColor="blue"
-            fillColor="red"
-            strokeWidth={2}
-          />
-        ))}
-
-        {triggerPoint1.Points.map( x => (
-          <MapView.Circle
-            center={x}
-            radius={this.state.distance}
-            strokeColor='transparent'
-            fillColor="rgba(0, 0, 0, 0.2)"
-          />
-        ))}
-        </MapView>
+      ))}
+</MapView>
       </View>
     );
   }
 }
+
+
 
 class loftyRouteScreen extends Component {
   static navigationOptions = {
@@ -376,7 +344,7 @@ class mylorRouteScreen extends Component {
 
 class notonRouteScreen extends Component {
   static navigationOptions = {
-    title: 'NotonRoute',
+    title: 'notonRoute',
   };
 
   constructor(props) {
@@ -483,7 +451,7 @@ class notonRouteScreen extends Component {
 
 class MapsScreen extends React.Component {
   static navigationOptions = {
-    title: 'Maps',
+    title: 'Your Challenge',
   };
   constructor(props) {
     super(props);
@@ -493,40 +461,48 @@ class MapsScreen extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={ styles.container} >
-      <Image source={require('./images/flinders.png')}  style={styles.backgroundImage}>
-
-
-      <Button style={styles.button}
-        title="Go to Morialta Map"
-        color='cornflowerblue'
-        onPress={() =>
-          navigate('morialtaRoute', { name: 'morialta map' })
-        }>
-      </Button>
-      <Button
-       title="Go to Mylor Map"
-       onPress={() =>
-         navigate('mylorRoute', { name: 'mylor map' })
-       }
-        />
-        <Button
-       title="Go to Lofty Map"
-       onPress={() =>
-         navigate('loftyRoute', { name: 'lofty map' })
-       }
-        />
-
-        <Button
-       title="Go to Noton Map"
-       onPress={() =>
-         navigate('notonRoute', { name: 'noton map' })
-       }
-        />
+      <View>
+        <View style={styles.bg}>
+          <Image source={require('./images/pic4.png')} >
+          <Button style={styles.button}
+            title="Morialta Map"
+            onPress={() =>
+              navigate('morialtaRoute', { name: 'morialta map' })
+            }>
+          </Button>
         </Image>
+        </View>
+        <View style={styles.bg}>
+          <Image source={require('./images/pic2.jpg')}>
+          <Button style={styles.button}
+            title="Mylor Map"
+            onPress={() =>
+              navigate('mylorRoute', { name: 'mylor map' })
+            }>
+          </Button>
+          </Image>
+        </View>
+        <View style={styles.bg}>
+          <Image source={require('./images/pic3.jpg')}>
+          <Button style={styles.button}
+         title="Lofty Map"
+         onPress={() =>
+           navigate('loftyRoute', { name: 'lofty map' })
+         }>
+          </Button>
+          </Image>
+        </View>
+        <View style={styles.bg}>
+          <Image source={require('./images/pic1.jpg')}>
+          <Button style={styles.button}
+         title="Noton Map"
+         onPress={() =>
+           navigate('notonRoute', { name: 'noton map' })
+         }>
+         </Button>
+         </Image>
+        </View>
       </View>
-
-
     );
   }
 }
@@ -540,34 +516,34 @@ class HomeScreen extends React.Component {
 
   }
 
-  componentDidMount(){
-     DeepLinking.addScheme('https://');
-    Linking.addEventListener('url', this.handleUrl);
+  componentDidMount(){   
+     DeepLinking.addScheme('https://');
+    Linking.addEventListener('url', this.handleUrl);
+ 
+    DeepLinking.addRoute('/www.google.com.au', (response) => {
+      // example://test 
+      this.setState({ response });
+    });
+ 
 
-    DeepLinking.addRoute('/www.google.com.au', (response) => {
-      // example://test
-      this.setState({ response });
-    });
+ 
+    Linking.getInitialURL().then((url) => {
+      if (url) {
+        Linking.openURL(url);
+      }
+    }).catch(err => console.error('An error occurred', err));}
 
-
-
-    Linking.getInitialURL().then((url) => {
-      if (url) {
-        Linking.openURL(url);
-      }
-    }).catch(err => console.error('An error occurred', err));}
-
-componentWillUnmount() {
-    Linking.removeEventListener('url', this.handleUrl);
-  }
-
-  handleUrl = ({ url }) => {
-    Linking.canOpenURL(url).then((supported) => {
-      if (supported) {
-        DeepLinking.evaluateUrl(url);
-      }
-    });
-  }
+componentWillUnmount() {
+    Linking.removeEventListener('url', this.handleUrl);
+  }
+ 
+  handleUrl = ({ url }) => {
+    Linking.canOpenURL(url).then((supported) => {
+      if (supported) {
+        DeepLinking.evaluateUrl(url);
+      }
+    });
+  }
 
 
 
@@ -575,15 +551,14 @@ componentWillUnmount() {
     const { navigate } = this.props.navigation;
     return (
       <View style={ styles.container} >
-      <Image source={require('./images/flinders.png')}  style={styles.backgroundImage}>
-      <Button
+      <Image source={require('./images/flinders.png')} >
+      <Button style={styles.button}
        title="Login to everyday hero"
        onPress={() =>
        Linking.openURL('https://everydayhero.com/au/sign-in')}
         />
       <Button style={styles.button}
         title="Find your maps"
-        color='cornflowerblue'
         onPress={() =>
           navigate('Maps', { name: 'map options' })
         }>
@@ -603,6 +578,7 @@ export const Nav = StackNavigator({
   loftyRoute:{ screen: loftyRouteScreen},
   mylorRoute: { screen: mylorRouteScreen },
   notonRoute:{screen: notonRouteScreen},
+
 });
 
 export default class App extends Component {
@@ -610,5 +586,6 @@ export default class App extends Component {
     return <Nav />;
   }
 }
+
 
 AppRegistry.registerComponent('App', () => App);

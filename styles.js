@@ -4,16 +4,31 @@ const constants = {
   actionColor: '#24CE84'
 };
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   map: {
     flex:1
   },
   container: {
-    backgroundColor: '#f2f2f2',
-    flex: 1,
+    alignItems: 'center',
+    paddingTop: 90,
+	},
+  bg: {
+    alignItems: 'center',
+    height: 122,
+  },
+  img: {
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   listview: {
     flex: 1,
+  },
+  homebutton: {
+    textAlign: 'center'
+  },
+  button: {
+    backgroundColor: '#fff',
+    fontSize: 35
   },
   li: {
     backgroundColor: '#fff',
@@ -49,10 +64,6 @@ var styles = StyleSheet.create({
     color: '#444',
     fontSize: 16,
     fontWeight: "500"
-  },
-  statusbar: {
-    backgroundColor: '#fff',
-    height: 22,
   },
   center: {
     textAlign: 'center',
