@@ -1,3 +1,5 @@
+import { Dimensions } from 'react-native'
+
 const React = require('react-native')
 const {StyleSheet} = React
 const constants = {
@@ -9,26 +11,44 @@ const styles = StyleSheet.create({
     flex:1
   },
   container: {
-    alignItems: 'center',
-    paddingTop: 90,
+    backgroundColor: '#f2f2f2',
+    flex: 1,
+  },
+  home: {
+    paddingTop: 425,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
 	},
+  homebutton: {
+    marginTop:10,
+    paddingTop:15,
+    paddingBottom:15,
+    marginLeft:30,
+    marginRight:30,
+    borderRadius: 100,
+    marginTop: 10
+  },
   bg: {
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1.25,
     alignItems: 'center',
-    height: 122,
+    height: 126,
   },
   img: {
-    flexDirection: 'row',
-    flexWrap: 'wrap'
+    flex: 1,
+    alignSelf: 'stretch',
+    width: null
   },
   listview: {
     flex: 1,
   },
-  homebutton: {
-    textAlign: 'center'
-  },
   button: {
-    backgroundColor: '#fff',
-    fontSize: 35
+    width: 150,
+    height: 50
+  },
+  homebutton: {
+    width: 150,
+    height: 50
   },
   li: {
     backgroundColor: '#fff',

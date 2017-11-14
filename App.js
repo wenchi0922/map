@@ -8,22 +8,22 @@ import {
   Text,
   View,
   Image,
-  Button,
-  Linking
+  Linking,
 } from 'react-native';
 import MapView from 'react-native-maps'
 import DeepLinking from 'react-native-deep-linking';
 import ActionButton from './components/ActionButton';
+import { Button } from 'react-native-elements'
+
 const morialtaCoor = require( './routes/route1.js');
 const loftyCoor = require( './routes/route2.js');
 const mylorCoor = require( './routes/route3.js');
 const notonCoor = require( './routes/route4.js');
 const styles = require('./styles.js');
 
-
  class morialtaRouteScreen extends Component {
   static navigationOptions = {
-    title: 'morialtaRoute',
+    title: 'MorialtaRoute',
   };
 
   constructor(props) {
@@ -110,9 +110,9 @@ const styles = require('./styles.js');
          coordinate={marker.latlng}
          title={marker.title}
          description={marker.description}
-    />
-  ))}
-  {morialtaCoor.coor.polylines.map(polyline => (
+        />
+      ))}
+        {morialtaCoor.coor.polylines.map(polyline => (
         <MapView.Polyline
           key={polyline.id}
           coordinates={polyline.coordinates}
@@ -120,8 +120,8 @@ const styles = require('./styles.js');
           fillColor="red"
           strokeWidth={2}
           />
-      ))}
-</MapView>
+        ))}
+        </MapView>
       </View>
     );
   }
@@ -218,9 +218,9 @@ class loftyRouteScreen extends Component {
          coordinate={marker.latlng}
          title={marker.title}
          description={marker.description}
-    />
-  ))}
-  {loftyCoor.coor.polylines.map(polyline => (
+         />
+     ))}
+        {loftyCoor.coor.polylines.map(polyline => (
         <MapView.Polyline
           key={polyline.id}
           coordinates={polyline.coordinates}
@@ -229,7 +229,7 @@ class loftyRouteScreen extends Component {
           strokeWidth={2}
           />
       ))}
-</MapView>
+        </MapView>
       </View>
     );
   }
@@ -324,9 +324,9 @@ class mylorRouteScreen extends Component {
          coordinate={marker.latlng}
          title={marker.title}
          description={marker.description}
-    />
-  ))}
-  {mylorCoor.coor.polylines.map(polyline => (
+         />
+       ))}
+        {mylorCoor.coor.polylines.map(polyline => (
         <MapView.Polyline
           key={polyline.id}
           coordinates={polyline.coordinates}
@@ -334,8 +334,8 @@ class mylorRouteScreen extends Component {
           fillColor="red"
           strokeWidth={2}
           />
-      ))}
-</MapView>
+        ))}
+        </MapView>
       </View>
     );
   }
@@ -344,7 +344,7 @@ class mylorRouteScreen extends Component {
 
 class notonRouteScreen extends Component {
   static navigationOptions = {
-    title: 'notonRoute',
+    title: 'NotonRoute',
   };
 
   constructor(props) {
@@ -431,9 +431,9 @@ class notonRouteScreen extends Component {
          coordinate={marker.latlng}
          title={marker.title}
          description={marker.description}
-    />
-  ))}
-  {notonCoor.coor.polylines.map(polyline => (
+         />
+          ))}
+          {notonCoor.coor.polylines.map(polyline => (
         <MapView.Polyline
           key={polyline.id}
           coordinates={polyline.coordinates}
@@ -441,8 +441,8 @@ class notonRouteScreen extends Component {
           fillColor="red"
           strokeWidth={2}
           />
-      ))}
-</MapView>
+        ))}
+        </MapView>
       </View>
     );
   }
@@ -463,8 +463,10 @@ class MapsScreen extends React.Component {
     return (
       <View>
         <View style={styles.bg}>
-          <Image source={require('./images/pic4.png')} >
+          <Image source={require('./images/pic4.png')} style={styles.img} >
           <Button style={styles.button}
+            backgroundColor = '#008B8B'
+            underlayColor = 'transparent'
             title="Morialta Map"
             onPress={() =>
               navigate('morialtaRoute', { name: 'morialta map' })
@@ -473,8 +475,10 @@ class MapsScreen extends React.Component {
         </Image>
         </View>
         <View style={styles.bg}>
-          <Image source={require('./images/pic2.jpg')}>
+          <Image source={require('./images/pic5.png')} style={styles.img}>
           <Button style={styles.button}
+            backgroundColor = '#eb983f'
+            underlayColor = 'transparent'
             title="Mylor Map"
             onPress={() =>
               navigate('mylorRoute', { name: 'mylor map' })
@@ -483,22 +487,26 @@ class MapsScreen extends React.Component {
           </Image>
         </View>
         <View style={styles.bg}>
-          <Image source={require('./images/pic3.jpg')}>
+          <Image source={require('./images/pic3.png')} style={styles.img}>
           <Button style={styles.button}
-         title="Lofty Map"
-         onPress={() =>
-           navigate('loftyRoute', { name: 'lofty map' })
-         }>
+           backgroundColor = '#118ab2'
+           underlayColor = 'transparent'
+           title="Lofty Map"
+           onPress={() =>
+             navigate('loftyRoute', { name: 'lofty map' })
+           }>
           </Button>
           </Image>
         </View>
         <View style={styles.bg}>
-          <Image source={require('./images/pic1.jpg')}>
+          <Image source={require('./images/pic6.png')} style={styles.img}>
           <Button style={styles.button}
-         title="Noton Map"
-         onPress={() =>
-           navigate('notonRoute', { name: 'noton map' })
-         }>
+            backgroundColor = '#9b9b9b'
+            title="Noton Map"
+            underlayColor = 'transparent'
+            onPress={() =>
+              navigate('notonRoute', { name: 'noton map' })
+            }>
          </Button>
          </Image>
         </View>
@@ -509,7 +517,7 @@ class MapsScreen extends React.Component {
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Welcome',
   };
   constructor(props) {
     super(props);
@@ -524,8 +532,6 @@ class HomeScreen extends React.Component {
       // example://test 
       this.setState({ response });
     });
- 
-
  
     Linking.getInitialURL().then((url) => {
       if (url) {
@@ -550,20 +556,23 @@ componentWillUnmount() {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={ styles.container} >
-      <Image source={require('./images/flinders.png')} >
-      <Button style={styles.button}
-       title="Login to everyday hero"
-       onPress={() =>
-       Linking.openURL('https://everydayhero.com/au/sign-in')}
-        />
-      <Button style={styles.button}
-        title="Find your maps"
-        onPress={() =>
-          navigate('Maps', { name: 'map options' })
-        }>
-      </Button>
-        </Image>
+      <View style={ styles.home }>
+
+          <Button
+            title='Go to Everydayhero'
+            backgroundColor= '#20B2AA'
+            underlayColor = 'transparent'
+            onPress={() =>
+            Linking.openURL('https://everydayhero.com/au/sign-in')}
+            />
+            <Button style={ styles.homebutton }
+              title="Check Our Maps"
+              backgroundColor= '#2F4F4F'
+              underlayColor = 'transparent'
+              onPress={() =>
+              navigate('Maps', { name: 'map options' })}
+            />
+
       </View>
 
 
@@ -572,6 +581,7 @@ componentWillUnmount() {
 }
 
 export const Nav = StackNavigator({
+
   Home: { screen: HomeScreen },
   Maps: { screen: MapsScreen },
   morialtaRoute:{screen:morialtaRouteScreen},
