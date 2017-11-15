@@ -14,19 +14,38 @@ const styles = StyleSheet.create({
     backgroundColor: '#f2f2f2',
     flex: 1,
   },
+  aniview: {
+    paddingTop: 300,
+  },
+  text: {
+    color: 'white',
+    fontSize: 35,
+    textAlign: 'center',
+    margin: 10,
+    lineHeight: 50,
+    backgroundColor: 'transparent',
+    fontWeight: 'bold',
+    fontFamily: 'Futura',
+    textShadowColor: 'rgba(0, 0, 0, 0.70)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
+  },
   home: {
-    paddingTop: 425,
-    flexDirection: 'row',
-    justifyContent: 'space-around'
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+
 	},
   homebutton: {
-    marginTop:10,
-    paddingTop:15,
-    paddingBottom:15,
-    marginLeft:30,
-    marginRight:30,
-    borderRadius: 100,
-    marginTop: 10
+    width: '40%',
+    height: 40,
+  },
+  absolute: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
   bg: {
     borderBottomColor: '#fff',
@@ -37,17 +56,17 @@ const styles = StyleSheet.create({
   img: {
     flex: 1,
     alignSelf: 'stretch',
-    width: null
+    width: null,
   },
   listview: {
     flex: 1,
   },
   button: {
-    width: 150,
+    width: 123,
     height: 50
   },
   homebutton: {
-    width: 150,
+    width: 225,
     height: 50
   },
   li: {
